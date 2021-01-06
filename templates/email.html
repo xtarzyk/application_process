@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Applicant by email
+{% endblock %}
+
+{% block content %}
+    <div id="endings">
+        {% if endings %}
+            {% for applicant in endings %}
+                Name: {{ applicant.full_name }}, Phone number: {{ applicant.phone_number }}<br>
+            {% endfor %}
+        {% else %}
+            Nope: {{ email_ending }}
+        {% endif %}
+    </div>
+    {% include "footer.html" %}
+{% endblock %}

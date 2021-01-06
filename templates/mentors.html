@@ -12,6 +12,17 @@
             <button type="submit">Search</button>
         </form>
     </div>
+    <div>
+        <form action="{{ url_for('mentors_list') }}">
+            <label for="city-input">Filter by mentor's city: </label>
+            <select name="city-input">
+                {% for city in cities %}
+                    <option value="{{ city.city }}">{{ city.city }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <div id="mentors">
         {% for mentor in mentors %}
