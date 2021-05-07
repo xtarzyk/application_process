@@ -39,6 +39,12 @@ def applicants_email():
     applicant_details = data_manager.get_applicant_data_by_email_ending(applicant_email_ending)
     return render_template('email.html', endings=applicant_details, email_ending=applicant_email_ending)
 
+@app.route("/applicants")
+def applicants_list():
+    headers = ("First Name", "Last Name", "Phone", "Email", "Application Code")
+    applicants_data = data_manager.get_applicants()
+    return render_template('applicants.html', headers=headers, applicants_data=applicants_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

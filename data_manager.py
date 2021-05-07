@@ -65,3 +65,11 @@ def get_applicant_data_by_email_ending(cursor: RealDictCursor, email_ending: str
         WHERE SUBSTR(email, POSITION('@' in email)) = %(email_ending)s
         """, {'email_ending': email_ending})
     return cursor.fetchall()
+
+@database_common.connection_handler
+def get_applicants(cursor: RealDictCursor) -> list:
+    cursor.execute("""
+    SELECT first_name, last_name, phone_number, email, application_code 
+    FROM applicant
+    """)
+    return cursor.fetchall()

@@ -1,2 +1,30 @@
-{% extends layout.html %}
+{% extends "layout.html" %}
 
+{% block page_title %}
+    Applicants list
+{% endblock %}
+
+{% block content %}
+<div id="applicants">
+    <table>
+        <tr>
+            {% for header in headers %}
+                <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in applicants_data %}
+        <tr>
+            {% for key, cell in row.items() %}
+                {% if key == "application_code" %}
+                    <td><a href="{{ url_for("index") }}">{{ cell }}</a></td>
+                {% else %}
+                    <td>{{ cell }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+    {% include "footer.html" %}
+{% endblock %}
